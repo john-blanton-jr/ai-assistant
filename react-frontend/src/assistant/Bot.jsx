@@ -79,7 +79,7 @@ function BotChat() {
                                 rows="3"
                                 maxLength="1500"
                             ></textarea>
-                            <label htmlFor="typeHere">Type here...</label>
+                            <label htmlFor="typeHere"></label>
                         </div>
                         <button className="btn btn-primary">Submit</button>
                     </form>
