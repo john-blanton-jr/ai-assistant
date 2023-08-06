@@ -50,7 +50,7 @@ function BotChat() {
     
             // Add the bot's response to the chat history
             setChatHistory(prevChatHistory => {
-                const updatedChatHistory = [...prevChatHistory, {role: "bot", content: botMessageContent}];
+                const updatedChatHistory = [...prevChatHistory, {role: "assistant", content: botMessageContent}];
                 // console.log('Updated chat history:', updatedChatHistory);
                 return updatedChatHistory;
             });
