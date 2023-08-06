@@ -58,12 +58,11 @@ function BotChat() {
                     <h1 className="text-center">Chat</h1>
                     <div className="mt-4">
                         {chatHistory.map((message, index) => (
-                                <div key={index} className={`border d-flex p-3 m-3 rounded ${message.role === "user" ? 'border-primary' : 'border-success'}`}>
-                                <p style={{color: message.isActive ? 'black' : 'grey'}}>
-                                    <strong>{message.role}:</strong> {message.content}
+                            <div key={index} className={`border d-flex px-4 py-1 my-3 ${message.role === "user" ? 'bg-primary rounded-start-pill' : 'bg-success rounded-end-circle'}`}>
+                                <p style={{color: message.isActive ? 'black' : 'grey'}} className={'text-white'}>
+                                    <strong >{message.role}:</strong> {message.content}
                                 </p>
                             </div>
-                            
                         ))}
                     </div>
                     <form onSubmit={handleSubmit} id="create-presentation-form">

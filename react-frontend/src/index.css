@@ -67,3 +67,14 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+
+
+.rounded-start-pill {
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+
+.rounded-end-circle {
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
