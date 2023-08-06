@@ -11,21 +11,26 @@ function BotChat() {
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            event.preventDefault();  // Prevent the default action (creating a new line)
-            handleSubmit(event);  // Submit the form
+            event.preventDefault();
+            handleSubmit(event);
         }
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        
+
+        let activeChatHistory = [...chatHistory, {role: "user", content: userMessage, isActive: true}];
+
+        while (activeChatHistory.reduce((acc, msg) => acc + msg.content.split(' ').length, 0) * 3 > 4000) {
+            activeChatHistory[0].isActive = false;
+            activeChatHistory.shift();
+        }
+
         const data = {
-            chat_history: chatHistory,
+            chat_history: activeChatHistory,
             user_message: userMessage
         };
-        
-        // console.log(JSON.stringify(data));
-        
+
         const chatUrl = "http://localhost:8000/chat/";
         const fetchConfig = {
             method: "post",
@@ -34,27 +39,15 @@ function BotChat() {
                 "Content-Type": "application/json",
             }
         };
-    
-        // Add the user's message to the chat history before sending the request
-        setChatHistory(prevChatHistory => [...prevChatHistory, {role: "user", content: userMessage}]);
-        
-        // Clear the text field immediately after sending the request
+
+        setChatHistory(prevChatHistory => [...prevChatHistory, {role: "user", content: userMessage, isActive: true}]);
         setUserMessage("");
-    
+
         const messageResponse = await fetch(chatUrl, fetchConfig);
         if (messageResponse.ok) {
             const response = await messageResponse.json();
-            // console.log('Response:', response);
-    
-            // Extract the bot's message from the response
             const botMessageContent = response.bot_message;
-    
-            // Add the bot's response to the chat history
-            setChatHistory(prevChatHistory => {
-                const updatedChatHistory = [...prevChatHistory, {role: "assistant", content: botMessageContent}];
-                // console.log('Updated chat history:', updatedChatHistory);
-                return updatedChatHistory;
-            });
+            setChatHistory(prevChatHistory => [...prevChatHistory, {role: "assistant", content: botMessageContent, isActive: true}]);
         }
     }
 
@@ -65,7 +58,9 @@ function BotChat() {
                     <h1 className="text-center">Chat</h1>
                     <div className="mt-4">
                         {chatHistory.map((message, index) => (
-                            <p key={index}><strong>{message.role}:</strong> {message.content}</p>
+                            <p key={index} style={{color: message.isActive ? 'black' : 'grey'}}>
+                                <strong>{message.role}:</strong> {message.content}
+                            </p>
                         ))}
                     </div>
                     <form onSubmit={handleSubmit} id="create-presentation-form">
