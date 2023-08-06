@@ -58,9 +58,12 @@ function BotChat() {
                     <h1 className="text-center">Chat</h1>
                     <div className="mt-4">
                         {chatHistory.map((message, index) => (
-                            <p key={index} style={{color: message.isActive ? 'black' : 'grey'}}>
-                                <strong>{message.role}:</strong> {message.content}
-                            </p>
+                                <div key={index} className={`border d-flex p-3 m-3 rounded ${message.role === "user" ? 'border-primary' : 'border-success'}`}>
+                                <p style={{color: message.isActive ? 'black' : 'grey'}}>
+                                    <strong>{message.role}:</strong> {message.content}
+                                </p>
+                            </div>
+                            
                         ))}
                     </div>
                     <form onSubmit={handleSubmit} id="create-presentation-form">
@@ -72,7 +75,7 @@ function BotChat() {
                                 onKeyDown={handleKeyPress}
                                 value={userMessage}
                                 id="typeHere"
-                                rows="3"
+                                rows="1"
                                 maxLength="1500"
                             ></textarea>
                             <label htmlFor="typeHere"></label>
