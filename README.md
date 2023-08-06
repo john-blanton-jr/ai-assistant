@@ -15,4 +15,4 @@ Use docker compose:
 
 change bot persona/vibes in views.py
 
-Does not remember chat history. Each request is a new chat. (plan to change this soon)
+Chat only remembers so much history. Text is grayed our once its not remembering it. 
