@@ -20,7 +20,8 @@ function BotChat() {
         event.preventDefault();
         
         const data = {
-            user_message: userMessage  // 'user_message' key is used here
+            chat_history: chatHistory,
+            user_message: userMessage
         };
         
         // console.log(JSON.stringify(data));
