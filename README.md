@@ -4,6 +4,11 @@ Basic chatbot with a surfer vibe.
 create .env file in django-backend/backend_project/
     OPENAI_API_KEY='Your openai api key'
 
+INSTALLED:
+Bootstrap
+React router
+** see requirements.txt for other installed items **
+
 Use docker compose:
 - docker-compose build
 - docker-compose up
