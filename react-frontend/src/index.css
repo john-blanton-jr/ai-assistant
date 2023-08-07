@@ -69,12 +69,14 @@ button:focus-visible {
 } */
 
 
-.rounded-start-pill {
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
+.rounded-user {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
-.rounded-end-circle {
-  border-top-right-radius: 50px;
-  border-bottom-right-radius: 50px;
+.rounded-assistant {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
 }

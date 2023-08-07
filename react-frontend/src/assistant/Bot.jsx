@@ -56,17 +56,19 @@ function BotChat() {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                     <h1 className="text-center">Chat</h1>
-                    <div className="mt-4">
+                    <div className="mt-4 d-flex flex-column align-items-start">
                         {chatHistory.map((message, index) => (
-                            <div key={index} className={`border d-flex px-4 py-1 my-3 ${message.role === "user" ? 'bg-primary rounded-start-pill' : 'bg-success rounded-end-circle'}`}>
-                                <p style={{color: message.isActive ? 'black' : 'grey'}} className={'text-white'}>
-                                    <strong >{message.role}:</strong> {message.content}
-                                </p>
+                            <div key={index} className={`d-flex ${message.role === "user" ? 'justify-content-end w-100' : 'justify-content-start w-100'}`}>
+                                <div className={`mt-1 pt-2 px-3 fs-6 ${message.role === "user" ? 'bg-primary rounded-user' : 'bg-success rounded-assistant'} d-inline-block text-white`} style={{maxWidth: '75%'}}>
+                                    <p style={{color: message.isActive ? 'white' : 'grey'}}>
+                                        <strong>{message.role}:</strong> {message.content}
+                                    </p>
+                                </div>
                             </div>
                         ))}
                     </div>
                     <form onSubmit={handleSubmit} id="create-presentation-form">
-                        <div className="form-floating mb-3">
+                        <div className="form-floating my-3">
                             <textarea
                                 className="form-control"
                                 required
