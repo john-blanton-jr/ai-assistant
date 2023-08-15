@@ -6,7 +6,7 @@ function App() {
   return (
     <BrowserRouter>
       <Nav />
-      <div className="container">
+      <div className="">
         <Routes>
           <Route path="/" element={<Bot />} />
         </Routes>
